@@ -1,0 +1,52 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ title or "Mensaje" }} · Condominio Los Cedros{% endblock %}
+
+{% block favicon %}
+<link rel="icon" href="/assets/los_cedros/images/icono.svg" type="image/svg+xml">
+{% endblock %}
+
+{% block head_include %}
+{{ super() }}
+{% include "los_cedros/templates/includes/lc_auth_head.html" %}
+{% endblock %}
+
+{% block navbar %}{% include "los_cedros/templates/includes/lc_auth_header.html" %}{% endblock %}
+
+{% block page_content %}
+<div class="lc-msg">
+  <div class="lc-msg-card">
+    <span class="lc-msg-icon lc-tone-{{ lc_tono or 'info' }}" aria-hidden="true">
+      {%- if lc_tono == "ok" -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      {%- elif lc_tono == "bad" -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      {%- else -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 11v6M12 7h.01"/><circle cx="12" cy="12" r="9"/></svg>
+      {%- endif -%}
+    </span>
+    <h1>{{ title or "Mensaje" }}</h1>
+    {% if message %}<div class="lc-msg-body">{{ message }}</div>{% endif %}
+    <div class="lc-msg-actions">
+      {% if lc_salida %}
+      <a class="lc-btn" href="/login">Iniciar sesión otra vez</a>
+      <a class="lc-btn lc-btn-ghost" href="/">Ir al inicio</a>
+      {% elif primary_action %}
+      <a class="lc-btn" href="{{ primary_action }}">{{ lc_boton or "Ir al inicio" }}</a>
+      {% endif %}
+    </div>
+    {% if error_code %}<p class="lc-msg-code">Código: {{ error_code }}</p>{% endif %}
+  </div>
+</div>
+<script>
+  frappe.ready(function () {
+    if (window.location.hash || window.location.href.includes("/app")) {
+      localStorage.setItem("session_last_route", window.location.pathname);
+    }
+    var b = document.querySelector(".lc-msg .lc-btn");
+    if (b) b.focus();
+  });
+</script>
+{% endblock %}
+
+{% block footer %}{% include "los_cedros/templates/includes/lc_auth_footer.html" %}{% endblock %}

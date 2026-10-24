@@ -1,0 +1,63 @@
+{
+ "actions": [],
+ "creation": "2026-10-17 19:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "etiqueta",
+  "tipo",
+  "opciones",
+  "obligatorio"
+ ],
+ "fields": [
+  {
+   "fieldname": "etiqueta",
+   "fieldtype": "Data",
+   "label": "Etiqueta",
+   "reqd": 1,
+   "in_list_view": 1,
+   "columns": 3
+  },
+  {
+   "fieldname": "tipo",
+   "fieldtype": "Select",
+   "label": "Tipo",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Texto\nSí/No\nOpciones",
+   "default": "Texto",
+   "columns": 2
+  },
+  {
+   "fieldname": "opciones",
+   "fieldtype": "Small Text",
+   "label": "Opciones",
+   "in_list_view": 1,
+   "columns": 4,
+   "depends_on": "eval:doc.tipo==\"Opciones\"",
+   "mandatory_depends_on": "eval:doc.tipo==\"Opciones\"",
+   "description": "Una opción por línea."
+  },
+  {
+   "fieldname": "obligatorio",
+   "fieldtype": "Check",
+   "label": "Obligatorio",
+   "in_list_view": 1,
+   "columns": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-10-17 19:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Los Cedros",
+ "name": "Campo Reporte",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0,
+ "istable": 1,
+ "editable_grid": 1
+}

@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-16 21:45:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "titulo",
+  "categoria",
+  "column_break_1",
+  "fecha",
+  "publicado",
+  "mostrar_hasta",
+  "section_contenido",
+  "resumen",
+  "detalle_titulo",
+  "detalle"
+ ],
+ "fields": [
+  {
+   "fieldname": "titulo",
+   "fieldtype": "Data",
+   "label": "Título",
+   "reqd": 1,
+   "in_list_view": 1,
+   "bold": 1
+  },
+  {
+   "fieldname": "categoria",
+   "fieldtype": "Select",
+   "label": "Categoría",
+   "reqd": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "options": "Obras\nAdministración\nComunidad\nSeguridad",
+   "default": "Comunidad"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "fecha",
+   "fieldtype": "Date",
+   "label": "Fecha",
+   "reqd": 1,
+   "default": "Today",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "publicado",
+   "fieldtype": "Check",
+   "label": "Publicado",
+   "default": "1",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "mostrar_hasta",
+   "fieldtype": "Date",
+   "label": "Mostrar hasta",
+   "description": "Opcional. Después de esta fecha el aviso deja de aparecer en el sitio."
+  },
+  {
+   "fieldname": "section_contenido",
+   "fieldtype": "Section Break",
+   "label": "Contenido"
+  },
+  {
+   "fieldname": "resumen",
+   "fieldtype": "Small Text",
+   "label": "Resumen",
+   "reqd": 1,
+   "description": "Texto corto que se ve en la tarjeta."
+  },
+  {
+   "fieldname": "detalle_titulo",
+   "fieldtype": "Data",
+   "label": "Título del detalle",
+   "description": "Ej.: «Cómo registrarte». Si se deja vacío dice «Más detalles»."
+  },
+  {
+   "fieldname": "detalle",
+   "fieldtype": "Small Text",
+   "label": "Detalle",
+   "description": "Texto que se despliega al tocar la tarjeta. Opcional."
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-10-16 21:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "Los Cedros",
+ "name": "Aviso Comunidad",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "System Manager"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "Editor Sitio"
+  }
+ ],
+ "sort_field": "fecha",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "title_field": "titulo",
+ "search_fields": "categoria"
+}

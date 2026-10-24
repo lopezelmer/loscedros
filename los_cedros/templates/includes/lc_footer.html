@@ -1,0 +1,11 @@
+<footer class="foot p-foot">
+  <div class="wrap">
+    <p><b>Emergencias:</b> fuego, personas heridas o un delito en curso se reportan primero al <b>9-1-1</b>.</p>
+    <p>
+      {% if cfg.telefono %}Administración: {{ cfg.telefono | e }}{% endif %}
+      {% if cfg.telefono and cfg.correo %} · {% endif %}
+      {% if cfg.correo %}{{ cfg.correo | e }}{% endif %}
+    </p>
+    <p class="muted">© Condominio Los Cedros · Junta de Directores</p>
+  </div>
+</footer>

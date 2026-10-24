@@ -1,0 +1,87 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-16 21:45:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "titulo",
+  "fecha",
+  "column_break_1",
+  "publicado",
+  "detalle"
+ ],
+ "fields": [
+  {
+   "fieldname": "titulo",
+   "fieldtype": "Data",
+   "label": "Título",
+   "reqd": 1,
+   "in_list_view": 1,
+   "bold": 1
+  },
+  {
+   "fieldname": "fecha",
+   "fieldtype": "Date",
+   "label": "Fecha",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "publicado",
+   "fieldtype": "Check",
+   "label": "Publicado",
+   "default": "1",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "detalle",
+   "fieldtype": "Data",
+   "label": "Detalle",
+   "description": "Lugar, hora o nota corta. Ej.: «Salón de actividades · 7:00 p.m.»"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-10-16 21:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "Los Cedros",
+ "name": "Evento Comunidad",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "System Manager"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "Editor Sitio"
+  }
+ ],
+ "sort_field": "fecha",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "title_field": "titulo"
+}

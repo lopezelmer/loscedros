@@ -1,0 +1,139 @@
+{
+ "actions": [],
+ "creation": "2026-10-17 19:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "usuario",
+  "nombre_completo",
+  "column_break_1",
+  "verificado",
+  "section_unidad",
+  "edificio",
+  "column_break_2",
+  "apartamento",
+  "section_contacto",
+  "telefono",
+  "column_break_3",
+  "contacto_preferido"
+ ],
+ "fields": [
+  {
+   "fieldname": "usuario",
+   "fieldtype": "Link",
+   "label": "Usuario",
+   "options": "User",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "nombre_completo",
+   "fieldtype": "Data",
+   "label": "Nombre",
+   "fetch_from": "usuario.full_name",
+   "read_only": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "verificado",
+   "fieldtype": "Check",
+   "label": "Verificado",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "description": "Si está marcado, el residente no puede cambiar su edificio y apartamento en los reportes."
+  },
+  {
+   "fieldname": "section_unidad",
+   "fieldtype": "Section Break",
+   "label": "Unidad"
+  },
+  {
+   "fieldname": "edificio",
+   "fieldtype": "Data",
+   "label": "Edificio",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "apartamento",
+   "fieldtype": "Data",
+   "label": "Apartamento",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_contacto",
+   "fieldtype": "Section Break",
+   "label": "Contacto"
+  },
+  {
+   "fieldname": "telefono",
+   "fieldtype": "Data",
+   "label": "Teléfono",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "contacto_preferido",
+   "fieldtype": "Select",
+   "label": "Contacto preferido",
+   "options": "Correo\nTeléfono",
+   "default": "Correo"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-10-17 19:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Los Cedros",
+ "name": "Residente",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "System Manager"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "Editor Sitio"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "field:usuario",
+ "naming_rule": "By fieldname",
+ "title_field": "nombre_completo",
+ "search_fields": "nombre_completo,edificio,apartamento"
+}

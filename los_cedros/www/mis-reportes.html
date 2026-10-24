@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+{% include "los_cedros/templates/includes/lc_head.html" %}
+</head>
+<body>
+{% include "los_cedros/templates/includes/lc_header.html" %}
+
+<main class="portal">
+  <div class="wrap p-wrap">
+  {% if caso %}
+    <a class="back" href="/mis-reportes">← Mis reportes</a>
+    <div class="p-head case-head">
+      <div>
+        <p class="eyebrow">Caso #{{ caso.numero }}{% if caso.categoria %} · {{ caso.categoria | e }}{% endif %}</p>
+        <h1 class="h1-case">{{ caso.asunto | e }}</h1>
+        <p class="muted">Abierto el {{ caso.abierto_el }}{% if caso.fotos %} · {{ caso.fotos }} foto{{ "" if caso.fotos == 1 else "s" }} adjunta{{ "" if caso.fotos == 1 else "s" }}{% endif %}</p>
+      </div>
+      <span class="status {{ caso.estado.clase }}">{{ caso.estado.texto | e }}</span>
+    </div>
+
+    {% if caso.estado.clase == "s-replied" %}
+    <p class="banner">La Administración respondió. Si necesitas algo más, contesta abajo.</p>
+    {% elif caso.estado.clase == "s-resolved" %}
+    <p class="banner ok">La Administración marcó este caso como resuelto. Si el problema sigue, contesta abajo.</p>
+    {% endif %}
+
+    <ol class="thread">
+      {% for m in mensajes %}
+      <li class="msg {{ m.de }}">
+        <div class="msg-h"><b>{{ m.autor | e }}</b><span>{{ m.fecha }}</span></div>
+        <div class="msg-b">{{ m.html | safe }}</div>
+      </li>
+      {% endfor %}
+    </ol>
+
+    {% if caso.cerrado %}
+    <p class="empty">Este caso está cerrado. Si necesitas ayuda, <a href="/reportar">crea un reporte nuevo</a>.</p>
+    {% else %}
+    <form id="reply" class="panel reply" novalidate>
+      <label for="mensaje"><b>Responder a la Administración</b></label>
+      <textarea id="mensaje" rows="4" maxlength="4000" required placeholder="Escribe tu mensaje"></textarea>
+      <p class="form-err" id="replyErr" role="alert" hidden></p>
+      <div class="actions">
+        <button type="submit" class="btn btn-solid" id="replyBtn">Enviar respuesta</button>
+        <span class="hint"><span id="mcount">0</span>/4000</span>
+      </div>
+    </form>
+    {% endif %}
+
+  {% else %}
+    <div class="p-head p-head-row">
+      <div>
+        <p class="eyebrow">Portal de Residentes</p>
+        <h1>Mis reportes</h1>
+        <p class="lede">Hola, {{ nombre_usuario | e }}. Aquí ves el estado de tus reportes y las respuestas de la Administración.</p>
+      </div>
+      <a class="btn btn-solid" href="/reportar">Nuevo reporte</a>
+    </div>
+
+    <h2 class="p-h2 list-h">En curso <span class="count">{{ abiertos | length }}</span></h2>
+    {% if abiertos %}
+    <ul class="cases">
+      {% for c in abiertos %}
+      <li><a class="case" href="/mis-reportes?caso={{ c.numero }}">
+        <span class="case-n">#{{ c.numero }}</span>
+        <span class="case-main"><b>{{ c.asunto | e }}</b><span class="muted">{{ c.categoria | e }}{% if c.categoria %} · {% endif %}Abierto el {{ c.fecha }} · Actualizado el {{ c.actualizado }}</span></span>
+        <span class="status {{ c.estado.clase }}">{{ c.estado.texto | e }}</span>
+      </a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="empty">No tienes reportes en curso. <a href="/reportar">Reportar una situación</a></p>
+    {% endif %}
+
+    {% if cerrados %}
+    <details class="closed">
+      <summary><h2 class="p-h2 list-h">Resueltos y cerrados <span class="count">{{ cerrados | length }}</span></h2></summary>
+      <ul class="cases">
+        {% for c in cerrados %}
+        <li><a class="case" href="/mis-reportes?caso={{ c.numero }}">
+          <span class="case-n">#{{ c.numero }}</span>
+          <span class="case-main"><b>{{ c.asunto | e }}</b><span class="muted">{{ c.categoria | e }}{% if c.categoria %} · {% endif %}Abierto el {{ c.fecha }}</span></span>
+          <span class="status {{ c.estado.clase }}">{{ c.estado.texto | e }}</span>
+        </a></li>
+        {% endfor %}
+      </ul>
+    </details>
+    {% endif %}
+  {% endif %}
+  </div>
+</main>
+
+{% include "los_cedros/templates/includes/lc_footer.html" %}
+<script type="application/json" id="lc-data">{{ data_json | safe }}</script>
+<script src="/assets/los_cedros/js/portal.js?v=1.3.0"></script>
+</body>
+</html>

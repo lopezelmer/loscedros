@@ -1,0 +1,5 @@
+[pre_model_sync]
+
+[post_model_sync]
+los_cedros.patches.v1_1.portal_residentes
+los_cedros.patches.v1_2.disable_email_link_login

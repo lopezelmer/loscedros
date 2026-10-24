@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+{% include "los_cedros/templates/includes/lc_head.html" %}
+</head>
+<body>
+{% include "los_cedros/templates/includes/lc_header.html" %}
+
+<main class="portal">
+  <div class="wrap p-wrap">
+    <div class="p-head">
+      <p class="eyebrow">Portal de Residentes</p>
+      <h1>Reportar una situación</h1>
+      <p class="lede">La Administración recibe tu reporte, le da seguimiento y te avisa cada cambio. Puedes verlo luego en <a href="/mis-reportes">Mis reportes</a>.</p>
+    </div>
+
+    <ol class="steps" aria-label="Pasos">
+      <li id="st1" class="on"><b>1</b> Categoría</li>
+      <li id="st2"><b>2</b> Detalles</li>
+      <li id="st3"><b>3</b> Enviado</li>
+    </ol>
+
+    <!-- Paso 1 -->
+    <section id="paso1" aria-labelledby="t1">
+      <h2 id="t1" class="p-h2">¿Qué quieres reportar?</h2>
+      {% if categorias %}
+      <div class="rcats">
+        {% for c in categorias %}
+        <button type="button" class="rcat" data-i="{{ loop.index0 }}">
+          <span class="ti">{{ c.icono_svg | safe }}</span>
+          <b>{{ c.nombre | e }}</b>
+          <span class="td">{{ c.titulo | e }}</span>
+        </button>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="empty">Todavía no hay categorías configuradas. Comunícate con la Administración.</p>
+      {% endif %}
+      <div class="emerg" role="note">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span><b>Emergencias:</b> fuego, personas heridas o un delito en curso se reportan primero al <b>9-1-1</b>.</span>
+      </div>
+    </section>
+
+    <!-- Paso 2 -->
+    <form id="form" class="rform" novalidate hidden>
+      <div class="rsel">
+        <span class="ti" id="selIcon"></span>
+        <div class="rsel-t">
+          <p class="eyebrow">Categoría</p>
+          <h2 id="selName" class="p-h2"></h2>
+          <p id="selTime" class="muted"></p>
+        </div>
+        <button type="button" class="btn btn-ghost" id="cambiar">Cambiar</button>
+      </div>
+
+      <div class="rgrid">
+        <div class="rcol">
+          <div id="extras"></div>
+
+          <div class="field">
+            <label for="descripcion">Describe la situación <span class="req">*</span></label>
+            <textarea id="descripcion" name="descripcion" rows="6" maxlength="4000" required placeholder="Qué pasa, dónde exactamente y desde cuándo."></textarea>
+            <span class="hint"><span id="dcount">0</span>/4000</span>
+          </div>
+
+          <div class="field">
+            <span class="lbl">Fotos <span class="muted">(opcional, hasta 3)</span></span>
+            <div class="fotos" id="fotos">
+              <label class="foto-add" for="fotoInput">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h3l2-3h8l2 3h3v13H3z"/><circle cx="12" cy="13" r="4"/></svg>
+                <span>Añadir foto</span>
+              </label>
+              <input type="file" id="fotoInput" accept="image/*" multiple class="sr-only">
+            </div>
+            <span class="hint">Las fotos se reducen y se les quita la ubicación antes de enviarlas.</span>
+          </div>
+        </div>
+
+        <aside class="rcol rside">
+          <div class="panel">
+            <h3>Tu apartamento</h3>
+            <div class="two-f">
+              <div class="field">
+                <label for="edificio">Edificio <span class="req">*</span></label>
+                <input id="edificio" name="edificio" maxlength="20" autocomplete="off" required>
+              </div>
+              <div class="field">
+                <label for="apartamento">Apartamento <span class="req">*</span></label>
+                <input id="apartamento" name="apartamento" maxlength="20" autocomplete="off" required>
+              </div>
+            </div>
+            <p class="hint" id="verif" hidden>Verificado por la Administración.</p>
+
+            <h3 style="margin-top:18px">¿Cómo te contactamos?</h3>
+            <div class="pills" role="radiogroup" aria-label="Contacto preferido">
+              <label><input type="radio" name="contacto" value="Correo" checked> Correo</label>
+              <label><input type="radio" name="contacto" value="Teléfono"> Teléfono</label>
+            </div>
+            <div class="field" id="telField">
+              <label for="telefono">Teléfono <span class="req" id="telReq" hidden>*</span></label>
+              <input id="telefono" name="telefono" type="tel" maxlength="30" autocomplete="tel" placeholder="787-555-0000">
+            </div>
+          </div>
+
+          <div class="panel tips" id="tipsBox">
+            <h3>Incluye en tu reporte</h3>
+            <ul id="tips"></ul>
+          </div>
+          <p class="note-warn" id="aviso" hidden></p>
+        </aside>
+      </div>
+
+      <p class="form-err" id="formErr" role="alert" hidden></p>
+      <div class="actions">
+        <button type="submit" class="btn btn-solid" id="enviar">Enviar reporte</button>
+        <span class="muted" id="enviando" hidden>Enviando…</span>
+      </div>
+    </form>
+
+    <!-- Paso 3 -->
+    <section id="exito" class="exito" hidden aria-live="polite">
+      <span class="ti big"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <h2 class="p-h2">Reporte enviado</h2>
+      <p>Tu número de caso es <b id="casoNum"></b>. La Administración te avisará cada cambio.</p>
+      <div class="actions">
+        <a class="btn btn-solid" id="verCaso" href="/mis-reportes">Ver mi reporte</a>
+        <a class="btn btn-ghost" href="/reportar">Crear otro reporte</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+{% include "los_cedros/templates/includes/lc_footer.html" %}
+<script type="application/json" id="lc-data">{{ data_json | safe }}</script>
+<script src="/assets/los_cedros/js/portal.js?v=1.3.0"></script>
+</body>
+</html>

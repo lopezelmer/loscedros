@@ -1,0 +1,192 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-16 21:45:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_general",
+  "boletin_periodo",
+  "aviso_estado",
+  "column_break_g",
+  "url_portal",
+  "imagen_portada",
+  "section_mensaje",
+  "mensaje_titulo",
+  "mensaje_junta",
+  "mensaje_firma",
+  "section_contacto",
+  "telefono",
+  "correo",
+  "column_break_c",
+  "buzon",
+  "pago_directo",
+  "section_cuotas",
+  "dia_vencimiento",
+  "column_break_q",
+  "dia_limite",
+  "section_horario",
+  "horario_oficina"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_general",
+   "fieldtype": "Section Break",
+   "label": "General"
+  },
+  {
+   "fieldname": "boletin_periodo",
+   "fieldtype": "Data",
+   "label": "Periodo del boletín",
+   "default": "Octubre – Diciembre 2026"
+  },
+  {
+   "fieldname": "aviso_estado",
+   "fieldtype": "Data",
+   "label": "Aviso corto en la portada",
+   "description": "Ej.: «Obras: instalación Teleentry en el portón». Vacío = no se muestra."
+  },
+  {
+   "fieldname": "column_break_g",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "url_portal",
+   "fieldtype": "Data",
+   "label": "Enlace del Portal de Residentes",
+   "default": "/mis-reportes",
+   "reqd": 1,
+   "description": "Destino del botón «Portal de Residentes». Normalmente /mis-reportes."
+  },
+  {
+   "fieldname": "imagen_portada",
+   "fieldtype": "Attach Image",
+   "label": "Imagen de portada",
+   "description": "Opcional. Sube la foto como pública. Vacío = foto del condominio incluida."
+  },
+  {
+   "fieldname": "section_mensaje",
+   "fieldtype": "Section Break",
+   "label": "Mensaje de la Junta"
+  },
+  {
+   "fieldname": "mensaje_titulo",
+   "fieldtype": "Data",
+   "label": "Título del mensaje"
+  },
+  {
+   "fieldname": "mensaje_junta",
+   "fieldtype": "Small Text",
+   "label": "Mensaje",
+   "description": "Vacío = no se muestra la tarjeta del mensaje."
+  },
+  {
+   "fieldname": "mensaje_firma",
+   "fieldtype": "Data",
+   "label": "Firma",
+   "default": "Junta de Directores"
+  },
+  {
+   "fieldname": "section_contacto",
+   "fieldtype": "Section Break",
+   "label": "Contacto"
+  },
+  {
+   "fieldname": "telefono",
+   "fieldtype": "Data",
+   "label": "Teléfono de Administración",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "correo",
+   "fieldtype": "Data",
+   "label": "Correo de Administración",
+   "options": "Email"
+  },
+  {
+   "fieldname": "column_break_c",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "buzon",
+   "fieldtype": "Data",
+   "label": "Buzón de pagos",
+   "default": "Al lado de la puerta de la Oficina"
+  },
+  {
+   "fieldname": "pago_directo",
+   "fieldtype": "Data",
+   "label": "Pago directo",
+   "default": "Consulta con tu banco si está disponible"
+  },
+  {
+   "fieldname": "section_cuotas",
+   "fieldtype": "Section Break",
+   "label": "Cuotas y horario"
+  },
+  {
+   "fieldname": "dia_vencimiento",
+   "fieldtype": "Int",
+   "label": "Día de vencimiento",
+   "default": "1",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_q",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "dia_limite",
+   "fieldtype": "Int",
+   "label": "Último día sin recargo",
+   "default": "16",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_horario",
+   "fieldtype": "Section Break",
+   "label": ""
+  },
+  {
+   "fieldname": "horario_oficina",
+   "fieldtype": "Table",
+   "label": "Horario de la Oficina para pagos",
+   "options": "Horario Oficina"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-10-17 19:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Los Cedros",
+ "name": "Configuracion Sitio",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "role": "System Manager"
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "write": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1,
+   "role": "Editor Sitio"
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "issingle": 1
+}

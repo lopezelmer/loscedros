@@ -1,0 +1,147 @@
+/* Los Cedros · /login theme. Loaded only on the login page (body.lc-login-page),
+   on top of Frappe's website + login styles. */
+:root{
+  --lc-bg:#F4F7F3; --lc-surface:#FFFFFF; --lc-sunk:#E9EFE8; --lc-ink:#13231A; --lc-muted:#55685C; --lc-line:#D7E1D8;
+  --lc-forest:#0E5E36; --lc-forest-2:#0B4A2B; --lc-leaf:#1F9A47; --lc-lime:#8CC63F; --lc-on-forest:#FFFFFF;
+  --lc-bad:#B42318; --lc-bad-bg:#FBE4E1;
+  --lc-display:"Bricolage Grotesque",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --lc-body:"Figtree",ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --lc-bg:#0C1510; --lc-surface:#131F18; --lc-sunk:#192820; --lc-ink:#E5EEE7; --lc-muted:#9BB0A2; --lc-line:#26372D;
+  --lc-forest:#2E8B57; --lc-forest-2:#0F3A24; --lc-leaf:#5CC27E; --lc-on-forest:#FFFFFF; --lc-bad:#F59A8E; --lc-bad-bg:#3D1A16;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --lc-bg:#0C1510; --lc-surface:#131F18; --lc-sunk:#192820; --lc-ink:#E5EEE7; --lc-muted:#9BB0A2; --lc-line:#26372D;
+  --lc-forest:#2E8B57; --lc-forest-2:#0F3A24; --lc-leaf:#5CC27E; --lc-on-forest:#FFFFFF; --lc-bad:#F59A8E; --lc-bad-bg:#3D1A16;
+  color-scheme:dark }
+
+body.lc-login-page,body.lc-login-page *,body.lc-login-page *::before,body.lc-login-page *::after{box-sizing:border-box}
+/* Normal page flow: Frappe can make <body> a full-height flex column, which squeezed the card
+   and cut off the form on short windows. Let the page grow and scroll instead. */
+html:has(body.lc-login-page){height:auto!important;min-height:100%}
+body.lc-login-page{margin:0;display:block!important;height:auto!important;min-height:100vh;overflow-y:auto!important;background:var(--lc-bg)!important;color:var(--lc-ink);font-family:var(--lc-body);-webkit-font-smoothing:antialiased}
+.lc-login-page .hidden{display:none!important}
+body.lc-login-page a{color:var(--lc-forest)}
+body.lc-login-page :focus-visible{outline:3px solid var(--lc-lime);outline-offset:2px}
+.lc-login-page .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+/* the email-link option is disabled on this site */
+.lc-login-page .for-login-with-email-link,
+.lc-login-page .login-with-email-link{display:none!important}
+
+/* frappe page chrome we don't use here */
+.lc-login-page .page-breadcrumbs,
+.lc-login-page .page-header-wrapper,
+.lc-login-page .web-footer{display:none!important}
+.lc-login-page .page-content-wrapper{min-height:0!important}
+.lc-login-page main.container{max-width:none;padding:0;margin:0!important}
+
+/* header */
+.lc-wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.lc-top{background:var(--lc-surface);border-bottom:1px solid var(--lc-line)}
+.lc-top .lc-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.lc-brand{display:flex;align-items:center;gap:10px;text-decoration:none!important;color:var(--lc-ink)!important}
+.lc-brand svg{width:40px;height:40px}
+.lc-brand b{display:block;font:800 1.02rem/1 var(--lc-display);letter-spacing:.01em}
+.lc-brand small{display:block;font:600 .66rem/1 var(--lc-body);letter-spacing:.16em;text-transform:uppercase;color:var(--lc-muted);margin-bottom:3px}
+.lc-back{font-weight:600;font-size:.92rem;text-decoration:none!important;padding:8px 12px;border-radius:999px;color:var(--lc-muted)!important}
+.lc-back:hover{background:var(--lc-sunk);color:var(--lc-ink)!important}
+
+/* layout: brand panel + form */
+.lc-login{flex:none;height:auto!important;min-height:0;max-width:1120px;margin:clamp(16px,4vh,48px) auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:24px;overflow:hidden;background:var(--lc-surface);border:1px solid var(--lc-line);box-shadow:0 1px 2px rgb(16 40 26 / .06),0 18px 48px rgb(16 40 26 / .10);width:calc(100% - 2 * max(16px,env(safe-area-inset-left,0px)))}
+.lc-aside{position:relative;padding:clamp(24px,3.5vw,48px);color:var(--lc-on-forest);display:flex;flex-direction:column;justify-content:space-between;gap:28px;
+  background:radial-gradient(120% 80% at 0% 0%,rgb(140 198 63 / .22),transparent 55%),linear-gradient(160deg,var(--lc-forest) 0%,var(--lc-forest-2) 100%)}
+.lc-aside-logo{width:clamp(120px,14vw,180px);height:auto}
+@media (max-height:760px) and (min-width:821px){.lc-aside-logo{width:120px}.lc-aside h1{font-size:2rem}.lc-aside{gap:18px}}
+.lc-eyebrow{font:600 .75rem/1 var(--lc-body);letter-spacing:.14em;text-transform:uppercase;color:var(--lc-lime);margin:0 0 12px}
+.lc-aside h1{font:800 clamp(2rem,3.6vw,2.8rem)/1.05 var(--lc-display);letter-spacing:-.02em;margin:0 0 18px;color:inherit;text-wrap:balance}
+.lc-aside ul{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:10px}
+.lc-aside li{display:flex;gap:10px;align-items:flex-start;font-size:1rem;line-height:1.4;opacity:.95}
+.lc-aside li::before{content:"";flex:none;width:18px;height:18px;margin-top:2px;border-radius:50%;background:rgb(255 255 255 / .16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238CC63F' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/11px no-repeat}
+.lc-aside-note{margin:0;font-size:.88rem;opacity:.8;max-width:42ch}
+.lc-main{display:flex;align-items:center;justify-content:center;padding:clamp(20px,4vw,48px) clamp(16px,3vw,40px);min-width:0}
+.lc-main > div{width:100%}
+
+@media (max-width:820px){
+  .lc-login{grid-template-columns:1fr;margin:16px auto;border-radius:20px}
+  .lc-aside{flex-direction:row;align-items:center;gap:16px;padding:20px}
+  .lc-aside-logo{width:64px;flex:none}
+  .lc-aside h1{font-size:1.45rem;margin:0}
+  .lc-aside ul,.lc-aside-note{display:none}
+  .lc-eyebrow{margin-bottom:6px}
+}
+
+/* Frappe login card, restyled */
+.lc-login-page .page-card-head{padding:0 0 18px!important;text-align:left}
+.lc-login-page .page-card-head img.app-logo{display:none}
+.lc-login-page .page-card-head h4{font:700 1.6rem/1.15 var(--lc-display)!important;letter-spacing:-.01em;color:var(--lc-ink)!important;margin:0!important}
+.lc-login-page .page-card-head .lc-sub{margin:8px 0 0;font:400 .95rem/1.5 var(--lc-body);color:var(--lc-muted)}
+.lc-login-page section .page-card{max-width:400px!important;margin:0 auto!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.lc-login-page section > .page-card-head,
+.lc-login-page section > .sign-up-message{max-width:400px;margin-inline:auto}
+.lc-login-page .page-card form{max-width:none!important}
+.lc-login-page .page-card-body{padding:0!important}
+.lc-login-page .form-group{margin-bottom:14px!important}
+.lc-login-page .form-label:not(.sr-only){font-weight:600;font-size:.9rem;color:var(--lc-ink)}
+.lc-login-page .page-card input.form-control,
+.lc-login-page #twofactor_div input.form-control{height:50px;width:100%;margin:0!important;border:1.5px solid var(--lc-line)!important;border-radius:12px!important;background:var(--lc-surface)!important;color:var(--lc-ink)!important;font:500 1rem var(--lc-body)!important;padding:0 14px 0 42px;box-shadow:none!important;transition:border-color .15s,box-shadow .15s}
+.lc-login-page #twofactor_div input.form-control{padding-left:14px}
+.lc-login-page .page-card input.form-control::placeholder{color:var(--lc-muted);opacity:.8}
+.lc-login-page .page-card input.form-control:focus{border-color:var(--lc-leaf)!important;box-shadow:0 0 0 4px color-mix(in srgb,var(--lc-leaf) 20%,transparent)!important;outline:none}
+.lc-login-page .page-card-body.invalid input.form-control{border-color:var(--lc-bad)!important}
+.lc-login-page .email-field,.lc-login-page .password-field{position:relative}
+.lc-login-page .field-icon{position:absolute;left:14px!important;top:17px!important;color:var(--lc-muted);stroke:currentColor}
+.lc-login-page .toggle-password{position:absolute;right:14px!important;top:15px!important;font:600 .82rem var(--lc-body)!important;color:var(--lc-forest)!important;cursor:pointer}
+.lc-login-page .password-field input.form-control{padding-right:76px}
+.lc-login-page .forgot-password-message{text-align:right;margin:2px 0 0}
+.lc-login-page .forgot-password-message a{font:600 .88rem var(--lc-body)!important;color:var(--lc-forest)!important}
+.lc-login-page .page-card-actions{margin-top:22px!important}
+.lc-login-page .btn-primary{display:flex;align-items:center;justify-content:center;width:100%;height:50px;border:0!important;border-radius:999px!important;background:var(--lc-forest)!important;color:var(--lc-on-forest)!important;font:700 1rem var(--lc-body)!important;box-shadow:0 8px 20px rgb(14 94 54 / .25)!important;transition:transform .15s,filter .15s}
+.lc-login-page .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.lc-login-page .btn-default.btn-login-option,.lc-login-page .btn-ldap-login.btn-default{height:46px;border-radius:999px!important;border:1.5px solid var(--lc-line)!important;background:var(--lc-surface)!important;color:var(--lc-ink)!important;font:600 .95rem var(--lc-body)!important;display:flex;align-items:center;justify-content:center}
+.lc-login-page .login-divider{color:var(--lc-muted)}
+.lc-login-page .sign-up-message{margin-top:18px!important;color:var(--lc-muted)!important;font:400 .92rem var(--lc-body)!important;text-align:center}
+.lc-login-page .sign-up-message a{color:var(--lc-forest)!important;font-weight:600}
+.lc-login-page .indicator{font-family:var(--lc-body)}
+.lc-login-page .for-signup .page-card-head{text-align:left}
+.lc-login-page #twofactor_div .text-muted{color:var(--lc-muted)!important;font-size:.92rem}
+.lc-login-page .lc-help{max-width:400px;margin:18px auto 0;padding:12px 14px;border-radius:12px;background:var(--lc-sunk);color:var(--lc-muted);font-size:.86rem;line-height:1.45}
+
+/* footer */
+.lc-foot{border-top:1px solid var(--lc-line);background:var(--lc-sunk);font-size:.88rem;color:var(--lc-ink)}
+.lc-foot .lc-wrap{padding-block:20px;display:grid;gap:4px}
+.lc-foot p{margin:0}
+.lc-muted{color:var(--lc-muted)}
+
+@media (prefers-reduced-motion: reduce){.lc-login-page *{transition:none!important;animation:none!important}}
+
+/* password page (Frappe's /update-password) */
+.lc-pass-page .for-reset-password{max-width:400px;margin:0 auto}
+.lc-pass-page .for-reset-password .page-card-head{max-width:none}
+.lc-pass-page .for-reset-password .page-card input.form-control{padding-left:14px}
+.lc-pass-page .for-reset-password .form-group{position:relative}
+.lc-pass-page .password-strength-indicator{position:absolute;right:12px;top:18px;float:none;margin:0;padding:0}
+.lc-pass-page .password-strength-message,.lc-pass-page .password-mismatch-message{margin:6px 0 0!important;font-size:.86rem;color:var(--lc-muted)}
+.lc-pass-page .password-mismatch-message.text-danger{color:var(--lc-bad)!important}
+.lc-pass-page .btn-update{margin-top:20px}
+.lc-pass-page .btn-update[disabled]{opacity:.55;box-shadow:none!important;transform:none}
+
+/* message pages (logged out, not permitted, expired links) */
+.lc-msg{display:flex;justify-content:center;padding:clamp(24px,8vh,80px) max(16px,env(safe-area-inset-left,0px))}
+.lc-msg-card{width:100%;max-width:480px;background:var(--lc-surface);border:1px solid var(--lc-line);border-radius:22px;padding:clamp(24px,4vw,36px);box-shadow:0 1px 2px rgb(16 40 26 / .06),0 18px 48px rgb(16 40 26 / .10);text-align:center}
+.lc-msg-icon{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:50%;margin-bottom:14px}
+.lc-msg-icon svg{width:28px;height:28px}
+.lc-tone-ok{background:#DFF1E3;color:#1F7A3E}
+.lc-tone-bad{background:var(--lc-bad-bg);color:var(--lc-bad)}
+.lc-tone-info{background:var(--lc-sunk);color:var(--lc-forest)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .lc-tone-ok{background:#163522;color:#7BD495}}
+:root[data-theme="dark"] .lc-tone-ok{background:#163522;color:#7BD495}
+.lc-msg-card h1{font:800 1.7rem/1.15 var(--lc-display);letter-spacing:-.01em;margin:0 0 10px;color:var(--lc-ink)}
+.lc-msg-body{color:var(--lc-muted);font-size:1rem;line-height:1.55;overflow-wrap:anywhere}
+.lc-msg-body p{margin:0 0 .6em}
+.lc-msg-actions{display:grid;gap:10px;margin-top:22px}
+.lc-btn{display:flex;align-items:center;justify-content:center;height:50px;border-radius:999px;background:var(--lc-forest);color:var(--lc-on-forest)!important;font:700 1rem var(--lc-body);text-decoration:none!important;box-shadow:0 8px 20px rgb(14 94 54 / .25);transition:filter .15s,transform .15s}
+.lc-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.lc-btn-ghost{background:transparent;color:var(--lc-ink)!important;border:1.5px solid var(--lc-line);box-shadow:none}
+.lc-msg-code{margin:16px 0 0;font-size:.8rem;color:var(--lc-muted)}

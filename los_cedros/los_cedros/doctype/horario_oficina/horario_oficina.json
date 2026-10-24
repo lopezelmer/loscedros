@@ -1,0 +1,50 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-16 21:45:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "dia",
+  "desde",
+  "hasta"
+ ],
+ "fields": [
+  {
+   "fieldname": "dia",
+   "fieldtype": "Select",
+   "label": "Día",
+   "reqd": 1,
+   "in_list_view": 1,
+   "options": "Lunes\nMartes\nMiércoles\nJueves\nViernes\nSábado\nDomingo"
+  },
+  {
+   "fieldname": "desde",
+   "fieldtype": "Time",
+   "label": "Desde",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "hasta",
+   "fieldtype": "Time",
+   "label": "Hasta",
+   "reqd": 1,
+   "in_list_view": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-10-16 21:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "Los Cedros",
+ "name": "Horario Oficina",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0,
+ "istable": 1,
+ "editable_grid": 1
+}

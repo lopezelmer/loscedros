@@ -1,0 +1,42 @@
+{% extends "frappe/www/login.html" %}
+
+{% block title %}Iniciar sesión · Condominio Los Cedros{% endblock %}
+
+{% block favicon %}
+<link rel="icon" href="/assets/los_cedros/images/icono.svg" type="image/svg+xml">
+{% endblock %}
+
+{% block head_include %}
+{{ super() }}
+{% include "los_cedros/templates/includes/lc_auth_head.html" %}
+{% endblock %}
+
+{% block navbar %}{% include "los_cedros/templates/includes/lc_auth_header.html" %}{% endblock %}
+
+{% block content %}
+<div class="lc-login">
+  <aside class="lc-aside" aria-label="Portal de Residentes">
+    <img class="lc-aside-logo" src="/assets/los_cedros/images/los-cedros-logo-white.svg" alt="Condominio Los Cedros">
+    <div class="lc-aside-text">
+      <p class="lc-eyebrow">Portal de Residentes</p>
+      <h1>Bienvenido a casa.</h1>
+      <ul>
+        <li>Reporta situaciones del condominio</li>
+        <li>Sigue el estado de tus casos</li>
+        <li>Recibe las respuestas de la Administración</li>
+      </ul>
+      <p class="lc-aside-note">¿No tienes cuenta? Solicítala en la Oficina de Administración{% if lc_cfg and lc_cfg.telefono %} · {{ lc_cfg.telefono | e }}{% endif %}.</p>
+    </div>
+  </aside>
+  <div class="lc-main">
+    {{ super() }}
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}{% include "los_cedros/templates/includes/lc_auth_footer.html" %}{% endblock %}
+
+{% block script %}
+{{ super() }}
+<script src="/assets/los_cedros/js/login.js?v=1.3.0"></script>
+{% endblock %}

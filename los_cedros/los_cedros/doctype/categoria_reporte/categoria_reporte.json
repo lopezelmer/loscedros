@@ -1,0 +1,171 @@
+{
+ "actions": [],
+ "creation": "2026-10-17 19:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "nombre",
+  "titulo",
+  "icono",
+  "column_break_1",
+  "activo",
+  "orden",
+  "section_helpdesk",
+  "prioridad",
+  "column_break_2",
+  "equipo",
+  "section_residente",
+  "tiempo_respuesta",
+  "sugerencias",
+  "aviso",
+  "section_campos",
+  "campos"
+ ],
+ "fields": [
+  {
+   "fieldname": "nombre",
+   "fieldtype": "Data",
+   "label": "Nombre",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1,
+   "bold": 1,
+   "description": "Se usa también como Tipo de ticket en Helpdesk. Evita cambiarlo después."
+  },
+  {
+   "fieldname": "titulo",
+   "fieldtype": "Data",
+   "label": "Descripción corta",
+   "in_list_view": 1,
+   "description": "Ej.: «Filtraciones, presión de agua o cisternas»"
+  },
+  {
+   "fieldname": "icono",
+   "fieldtype": "Select",
+   "label": "Ícono",
+   "options": "herramienta\nagua\nrayo\nescudo\nplaga\nruido\nparque\nfactura\notro",
+   "default": "otro"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "activo",
+   "fieldtype": "Check",
+   "label": "Activo",
+   "default": "1",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "orden",
+   "fieldtype": "Int",
+   "label": "Orden",
+   "default": "10",
+   "in_list_view": 1,
+   "description": "Número menor aparece primero."
+  },
+  {
+   "fieldname": "section_helpdesk",
+   "fieldtype": "Section Break",
+   "label": "Helpdesk"
+  },
+  {
+   "fieldname": "prioridad",
+   "fieldtype": "Link",
+   "label": "Prioridad",
+   "options": "HD Ticket Priority",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break",
+   "label": ""
+  },
+  {
+   "fieldname": "equipo",
+   "fieldtype": "Link",
+   "label": "Equipo",
+   "options": "HD Team",
+   "description": "Opcional. El caso se asigna a este equipo de Helpdesk."
+  },
+  {
+   "fieldname": "section_residente",
+   "fieldtype": "Section Break",
+   "label": "Lo que ve el residente"
+  },
+  {
+   "fieldname": "tiempo_respuesta",
+   "fieldtype": "Data",
+   "label": "Tiempo de respuesta",
+   "description": "Ej.: «Respuesta típica: 2–3 días laborables»"
+  },
+  {
+   "fieldname": "sugerencias",
+   "fieldtype": "Small Text",
+   "label": "Incluye en tu reporte",
+   "description": "Una sugerencia por línea."
+  },
+  {
+   "fieldname": "aviso",
+   "fieldtype": "Small Text",
+   "label": "Nota importante",
+   "description": "Opcional. Se muestra resaltada en el formulario."
+  },
+  {
+   "fieldname": "section_campos",
+   "fieldtype": "Section Break",
+   "label": "Campos adicionales del formulario"
+  },
+  {
+   "fieldname": "campos",
+   "fieldtype": "Table",
+   "label": "Campos",
+   "options": "Campo Reporte"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-10-17 19:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Los Cedros",
+ "name": "Categoria Reporte",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "System Manager"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "share": 1,
+   "write": 1,
+   "role": "Editor Sitio"
+  }
+ ],
+ "sort_field": "orden",
+ "sort_order": "ASC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "field:nombre",
+ "naming_rule": "By fieldname",
+ "title_field": "nombre",
+ "search_fields": "titulo"
+}
